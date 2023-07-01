@@ -1,19 +1,17 @@
 {% extends 'base.html' %}
 
 {% block title_head %}
-<title>Crear Gato</title>
+<title>Eliminar Gato</title>
 {% endblock title_head %}
 
 {% block h1_header %}
-Crear Gato
+Eliminar Gato {{gato.nombre}}
 {% endblock h1_header %}
 
 {% block contenido %}
-<form action={% url 'inicio:crear_gato' %} method="post">
+<form action={% url 'inicio:eliminar_gato' gato.id%} method="post">
     {% csrf_token %}
-    <table>
-        {{formulario}}
-    </table>
-    <button>Crear</button>
+    <p>Va a eliminar a {{gato}}</p>
+    <button>Confirmar</button>
 </form>
 {% endblock contenido %}

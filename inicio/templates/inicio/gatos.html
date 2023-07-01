@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title_head %}
+<title>Gatos</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+Gatos
+{% endblock h1_header %}
+
+{% block contenido %}
+<button>
+    <a class="navbar-brand" href={% url 'inicio:crear_gato' %}>Crear gato</a>
+</button>
+
+<form action={% url 'inicio:gatos' %}>
+    {{formulario}}
+    <button>Busqueda</button>
+</form>
+
+{% if lista_gatos %}
+{% for gato in lista_gatos %}
+<li>
+    <a href={% url 'inicio:detalle_gato' gato.id %}>{{gato}}</a>
+    <button>
+        <a class="navbar-brand" href={% url 'inicio:modificar_gato' gato.id %}>Modificar</a>
+    </button>
+    <button>
+        <a class="navbar-brand" href={% url 'inicio:eliminar_gato' gato.id %}>Eliminar</a>
+    </button>
+</li>
+{% endfor %}
+{% else %}
+<p>No se encontraron gatos.</p>
+{% endif %}
+
+{% endblock contenido %}
